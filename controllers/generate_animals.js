@@ -1,18 +1,17 @@
 const faker = require('faker/locale/fr');
-const { random } = require('./utils');
 
 /**
  * 
  * @param {number} count 
  * @returns 
  */
-const generateCats = (count) => Array.from(Array(count), generateCat);
+const generateAnimals = (count) => Array.from(Array(count), generateAnimal);
 
-const generateCat = (v,k) => {
+const generateAnimal = (v,k) => {
     return {name: faker.name.firstName(), img: faker.image.animals(600, 460, true)};
 }
 
 
 module.exports = {
-    generateCats
+    generateAnimals: generateAnimals
 }

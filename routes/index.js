@@ -1,12 +1,12 @@
 var express = require('express');
-const { generateCats } = require('../controllers/generate_animals');
+const { generateAnimals: generateCats } = require('../controllers/generate_animals');
 var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  const cats = {animals: generateCats(10)};
-  console.log(cats);
-  res.render('index', cats);
+  const animals = {animals: generateCats(10)};
+  console.log(animals);
+  res.render('index', animals);
 });
 
 module.exports = router;
