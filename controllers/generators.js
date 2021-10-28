@@ -7,7 +7,8 @@ const { random } = require('lodash');
  * @param {Function} generator Two parameters : value of the current array element and index of this element. Paramaters should be ignored most of the time.
  * @returns 
  */
-const generateArrayOfFakes = (count, generator) => JSON.stringify(Array.from(Array(typeof(count) === 'string' ? Number.parseInt(count) : count), generator));
+const generateArrayOfFakes = (count, generator) => Array.from(Array(typeof(count) === 'string' ? Number.parseInt(count) : count), generator);
+const generateJSONOfFakes = (count, generator) => JSON.stringify(generateArrayOfFakes(count, generator));
 
 const generateAnimal = () => ({ name: faker.name.firstName(), img: faker.image.animals(600, 460, true) });
 
@@ -33,6 +34,7 @@ const generateStudent = () => {
 
 module.exports = {
     generateArrayOfFakes,
+    generateJSONOfFakes,
     generateAnimal,
     generateStudent
 }
