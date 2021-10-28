@@ -1,0 +1,12 @@
+extends layout 
+
+block content
+    h1=title
+    ul
+        each person in people
+            li
+                img(src=person.avatar)
+                p #{person.first_name} #{person.last_name} 
+                p=person.address
+                p=person.email
+                p=person.phone

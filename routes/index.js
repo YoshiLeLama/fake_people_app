@@ -3,10 +3,8 @@ const { generateArrayOfFakes, generateAnimal } = require('../controllers/generat
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  const animals = {animals: generateArrayOfFakes(10, generateAnimal)};
-  console.log(animals);
-  res.render('index', animals);
+router.get('/', function (req, res, next) {
+  res.render('index', {});
 });
 
 module.exports = router;

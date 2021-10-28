@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+ul.navbar {
+  list-style-type: none;
+}
+
+ul.navbar li {
+  display: inline;
+  padding: 1%;
+}
