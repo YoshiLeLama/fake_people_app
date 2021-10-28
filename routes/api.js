@@ -1,20 +1,21 @@
 const express = require('express');
-const { generateArrayOfFakes, generateAnimal, generateStudent, generateJSONOfFakes } = require('../controllers/generators');
+const { generateAnimal, generatePerson, generateJSONOfFakes } = require('../controllers/generators');
 const router = express.Router();
-const _ = require('lodash');
-const { random } = require('lodash');
 const { setJSONContentType } = require('../controllers/api_utils');
+const apiGenerateDebug = require('debug')('api:generate');
 
 router.get('/animals', (req, res, next) => {
-    console.log(req.query.count);
+    const count = (req.query.count) ? req.query.count : 1;
+    apiGenerateDebug("Generate %s fake animal%s.", count, (count > 1 ? 's' : ''));
     setJSONContentType(res);
-    res.end(generateJSONOfFakes(req.query.count, generateAnimal)); 
+    res.end(generateJSONOfFakes(count, generateAnimal)); 
 });
 
-router.get('/class', (req, res, next) => {
+router.get('/people', (req, res, next) => {
+    const count = (req.query.count) ? req.query.count : 1;
+    apiGenerateDebug("Generate %s fake %s.", count, (count > 1 ? "people" : "person"));
     setJSONContentType(res);
-    
-    res.end(generateJSONOfFakes(req.query.count, generateStudent));
+    res.end(generateJSONOfFakes(count, generatePerson));
 });
 
 module.exports = router;

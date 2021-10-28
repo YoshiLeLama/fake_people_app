@@ -12,7 +12,7 @@ const generateJSONOfFakes = (count, generator) => JSON.stringify(generateArrayOf
 
 const generateAnimal = () => ({ name: faker.name.firstName(), img: faker.image.animals(600, 460, true) });
 
-const generateStudent = () => {
+const generatePerson = () => {
     const gender = random(0,1) ? 'male':'female';
     const first_name = faker.name.firstName(gender);
     const last_name = faker.name.lastName();
@@ -36,5 +36,5 @@ module.exports = {
     generateArrayOfFakes,
     generateJSONOfFakes,
     generateAnimal,
-    generateStudent
+    generatePerson
 }
