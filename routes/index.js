@@ -1,6 +1,6 @@
-var express = require('express');
-const { generateAnimals } = require('../controllers/generate_animals');
-var router = express.Router();
+const express = require('express');
+const { generateAnimals } = require('../controllers/generators');
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
