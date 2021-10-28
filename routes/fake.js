@@ -1,17 +1,18 @@
 const express = require('express');
-const { generateArrayOfFakes, generateStudent, generateAnimal } = require('../controllers/generators');
+const { generateArrayOfFakes, generatePerson, generateAnimal } = require('../controllers/generators');
+const { countValidator } = require('../utils/api_validity');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
     res.render('fake', {});
 });
 
-router.get('/class', (req, res, next) => {
-    res.render('class', {title: "Class", people: generateArrayOfFakes(req.query.count, generateStudent)});
+router.get('/people', (req, res, next) => {
+    res.render('class', {title: "People", people: generateArrayOfFakes(countValidator(req.query.count), generatePerson)});
 });
 
 router.get('/animals', (req, res ,next) => {
-    res.render('animals', {title:"Animals", animals: generateArrayOfFakes(req.query.count, generateAnimal)});
+    res.render('animals', {title:"Animals", animals: generateArrayOfFakes(countValidator(req.query.count), generateAnimal)});
 })
 
 module.exports = router;
