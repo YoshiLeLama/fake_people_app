@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/people', (req, res, next) => {
-    res.render('class', {title: "People", people: generateArrayOfFakes(countValidator(req.query.count), generatePerson)});
+    res.render('people', {title: "People", people: generateArrayOfFakes(countValidator(req.query.count), generatePerson)});
 });
 
 router.get('/animals', (req, res ,next) => {
