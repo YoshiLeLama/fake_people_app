@@ -1,18 +1,29 @@
 const faker = require('faker/locale/fr');
 const { random } = require('lodash');
+const { getDepartment } = require('../utils/department');
 
 /**
  * 
- * @param {Number} count 
+ * @param {Number} count
  * @param {Function} generator Two parameters : value of the current array element and index of this element. Paramaters should be ignored most of the time.
  * @returns 
  */
-const generateArrayOfFakes = (count, generator) => Array.from(Array(typeof(count) === 'string' ? Number.parseInt(count) : count), generator);
-const generateJSONOfFakes = (count, generator) => JSON.stringify(generateArrayOfFakes(count, generator));
+const generateArrayOfFakes = async (count, generator) => {
+    let arr = new Array(count);
+    for (let i = 0; i < count; i++) {
+        let element = await generator();
+        arr[i] = element;
+    }
+    return arr;
+};
+const generateJSONOfFakes = async (count, generator) => {
+    const arr = await generateArrayOfFakes(count, generator);
+    return JSON.stringify(arr);
+};
 
-const generateAnimal = () => ({ name: faker.name.firstName(), img: faker.image.animals(600, 460, true) });
+const generateAnimal = async () => ({ name: faker.name.firstName(), img: faker.image.animals(600, 460, true) });
 
-const generatePerson = () => {
+const generatePerson = async () => {
     const gender = random(0,1) ? 'male':'female';
     const first_name = faker.name.firstName(gender);
     const last_name = faker.name.lastName();
@@ -20,6 +31,9 @@ const generatePerson = () => {
     const phone = faker.phone.phoneNumber();
     const address = `${faker.address.streetAddress()}, ${faker.address.cityName()}`;
     const avatar = faker.image.avatar();
+    const department = await getDepartment();
+
+    console.log(department)
 
     return {
         gender,
@@ -28,7 +42,8 @@ const generatePerson = () => {
         email,
         phone,
         address,
-        avatar
+        avatar,
+        department
     }
 }
 
